@@ -1,4 +1,4 @@
-package com.SpringBootSecurity.Security.signupdto;
+package com.SpringBootSecurity.Security.dto;
 
 import lombok.Data;
 
