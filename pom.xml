@@ -63,9 +63,14 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.6.0</version>
 		</dependency>
-		
 
 
+
+		<dependency>
+			<groupId>com.DtoEx</groupId>
+			<artifactId>DtoPractice</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.SpringBootSecurity.Security.common.ApiResponse;
@@ -78,19 +79,21 @@ public class LoginService implements ServiceImplement {
 	@Override
 	public ApiResponse privateapi(String authorization) throws Exception{
 		ApiResponse apiResponse=new ApiResponse();
-		try {
+//		try {
 			jwToken.verify(authorization);
 			apiResponse.setStatus(HttpStatus.OK.value());
 			apiResponse.setData("this is private api");
-		}
-		catch (Exception e)
-		{
-		apiResponse.setStatus(HttpStatus.BAD_REQUEST.value());
-		apiResponse.setData("Login Failed");
-		apiResponse.setError("Oops something Went wrong");
-		}
+//		}
+//		catch (Exception e)
+//		{
+//		
+//		apiResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+//		apiResponse.setData("Login Failed");
+//		apiResponse.setError("Oops something Went wrong");
+//		}
 	
 		return apiResponse;
 	}
 
+	
 }
