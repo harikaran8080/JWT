@@ -35,12 +35,12 @@ public class LoginController {
 		return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
 	}
 
-	@GetMapping("/private/api")
-	public ResponseEntity<ApiResponse> privateapi(@RequestHeader(value = "authorization") String authorization)
-			throws Exception {
-		ApiResponse apiResponse = implement.privateapi(authorization);
-		return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
-	}
+//	@GetMapping("/private/api")
+//	public ResponseEntity<ApiResponse> privateapi(@RequestHeader(value = "authorization") String authorization)
+//			throws Exception {
+//		ApiResponse apiResponse = implement.privateapi(authorization);
+//		return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
+//	}
 	
 	
 }

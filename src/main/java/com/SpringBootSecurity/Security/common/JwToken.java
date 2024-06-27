@@ -36,7 +36,7 @@ public class JwToken {
 		try {
 			Jwts.parser().setSigningKey(secret).parseClaimsJws(authorization);
 		} catch (Exception e) {
-			throw new AccessDeniedException("Accesss Denied");
+			throw new Exception();
 		}
 	}
 
