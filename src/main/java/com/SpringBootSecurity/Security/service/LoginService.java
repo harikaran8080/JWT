@@ -80,16 +80,16 @@ public class LoginService implements ServiceImplement {
 	@Override
 	public ApiResponse privateapi(String authorization) throws Exception {
 		ApiResponse apiResponse=new ApiResponse();
-		try {
+//		try {
 			jwToken.verify(authorization);
 			apiResponse.setStatus(HttpStatus.OK.value());
 			apiResponse.setData("this is private api");
-		}
-		catch (Exception e)
-		{
-			throw new AccessDeniedException("Access Denied");
-		}
-		
+//		}
+//		catch (Exception e)
+//		{
+//			throw new AccessDeniedException("Access Denied");
+//		}
+//		
 		
 	
 		return apiResponse;

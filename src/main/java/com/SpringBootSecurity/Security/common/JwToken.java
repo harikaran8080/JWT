@@ -28,15 +28,21 @@ public class JwToken {
 		claims.put("type", user.getUserType());
 		claims.put("name", user.getName());
 		claims.put("emailId", user.getEmailId());
-		return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS256, secret).compact();
+		return Jwts.builder()
+				.setClaims(claims)
+				.signWith(SignatureAlgorithm.HS256, secret)
+				.compact();
 
 	}
 
-	public void verify(String authorization) throws Exception {
+	public Claims verify(String authorization) throws Exception {
 		try {
-			Jwts.parser().setSigningKey(secret).parseClaimsJws(authorization);
+			Claims claims=Jwts.parser().setSigningKey(secret).parseClaimsJws(authorization).getBody();
+//		System.out.println(claims.get("name"));
+			return claims;
 		} catch (Exception e) {
-			throw new Exception();
+			
+			throw new AccessDeniedException("access denied");
 		}
 	}
 
