@@ -3,7 +3,6 @@ package com.SpringBootSecurity.Security.interceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.SpringBootSecurity.Security.common.JwToken;
 import com.SpringBootSecurity.Security.dto.RequsetMeta;
@@ -32,7 +31,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 
 		String auth = request.getHeader("authorization");
 
-		if (!(request.getRequestURI().contains("login") || request.getRequestURI().contains("signup"))) {
+		if (!(request.getRequestURI().contains("logins") || request.getRequestURI().contains("signup") || request.getRequestURI().contains("/get/both/all"))) {
 			Claims claims = jwToken.verify(auth);
 
 			requsetMeta.setUserName(claims.get("name").toString());

@@ -1,18 +1,22 @@
 package com.SpringBootSecurity.Security.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.SpringBootSecurity.Security.common.AccessDeniedException;
 import com.SpringBootSecurity.Security.common.ApiResponse;
 import com.SpringBootSecurity.Security.common.JwToken;
+import com.SpringBootSecurity.Security.common.PasswordUtil;
+import com.SpringBootSecurity.Security.common.ReviewInterface;
 import com.SpringBootSecurity.Security.dto.LoginDto;
 import com.SpringBootSecurity.Security.dto.SignUpDto;
+import com.SpringBootSecurity.Security.entity.Review;
 import com.SpringBootSecurity.Security.entity.User;
 import com.SpringBootSecurity.Security.repository.UserRepository;
 
@@ -21,13 +25,10 @@ public class LoginService implements ServiceImplement {
 
 	@Autowired
 	private UserRepository repository;
-	
+
 	@Autowired
 	private JwToken jwToken;
 
-	/**
-	 *
-	 */
 	@Override
 	public ApiResponse signup(SignUpDto dto) {
 		ApiResponse apiResponse = new ApiResponse();
@@ -36,7 +37,7 @@ public class LoginService implements ServiceImplement {
 		user.setGender(dto.getGender());
 		user.setEmailId(dto.getEmailId());
 		user.setPhoneNumber(dto.getPhoneNumber());
-		user.setPassword(dto.getPassword());
+		user.setPassword(PasswordUtil.passwordencrypte(dto.getPassword()));
 
 		if (user.getPassword() == null || user.getPassword().isEmpty()) {
 			apiResponse.setStatus(HttpStatus.BAD_REQUEST.value());
@@ -47,10 +48,7 @@ public class LoginService implements ServiceImplement {
 			apiResponse.setStatus(HttpStatus.OK.value());
 			apiResponse.setData(user);
 			repository.save(user);
-			String token = jwToken.JwtGenarate(user);
-			Map<String, Object> data = new HashMap<>();
-			data.put("Access Token", token);
-			apiResponse.setData(data);
+
 		}
 
 		return apiResponse;
@@ -74,26 +72,48 @@ public class LoginService implements ServiceImplement {
 			return apiResponse;
 		}
 
-		
 	}
 
 	@Override
 	public ApiResponse privateapi(String authorization) throws Exception {
-		ApiResponse apiResponse=new ApiResponse();
+		ApiResponse apiResponse = new ApiResponse();
 //		try {
-			jwToken.verify(authorization);
-			apiResponse.setStatus(HttpStatus.OK.value());
-			apiResponse.setData("this is private api");
+		jwToken.verify(authorization);
+		apiResponse.setStatus(HttpStatus.OK.value());
+		apiResponse.setData("this is private api");
 //		}
 //		catch (Exception e)
 //		{
 //			throw new AccessDeniedException("Access Denied");
 //		}
 //		
-		
-	
+
+		return apiResponse;
+	}
+
+	@Override
+	public ApiResponse validatepassword(LoginDto dto) {
+		ApiResponse apiResponse = new ApiResponse();
+		Optional<User> optional = repository.findByEmail(dto.getEmailId());
+		User user = optional.get();
+		String realPassword = user.getPassword();
+		String loginPassword = PasswordUtil.passwordencrypte(dto.getPassword());
+		if (realPassword.equals(loginPassword)) {
+			apiResponse.setStatus(HttpStatus.OK.value());
+			apiResponse.setData(user);
+		}else {
+			
+		}
+
 		return apiResponse;
 	}
 
 	
+	@Override
+	public List<ReviewInterface> getmultiplevalues(UUID cId) {
+		return repository.findByMultipleValues(cId);
+	}
+
+	
+
 }

@@ -25,7 +25,7 @@ public class JwToken {
 
 		Claims claims = Jwts.claims().setIssuer(user.getId().toString());
 		claims.setIssuedAt(issuedAt).setExpiration(expiryAt);
-		claims.put("type", user.getUserType());
+//		claims.put("type", user.getUserType());
 		claims.put("name", user.getName());
 		claims.put("emailId", user.getEmailId());
 		return Jwts.builder()
