@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.SpringBootSecurity.Security.dto.MovieDto;
-import com.SpringBootSecurity.Security.dto.RequsetMeta;
 import com.SpringBootSecurity.Security.entity.Movies;
 import com.SpringBootSecurity.Security.service.MovieImplement;
 

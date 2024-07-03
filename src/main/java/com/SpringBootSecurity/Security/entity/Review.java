@@ -17,7 +17,7 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int reviewId;
 
-	private UUID cId;
+	private int cId;
 
 	private int movieNo;
 

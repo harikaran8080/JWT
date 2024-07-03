@@ -1,7 +1,5 @@
 package com.SpringBootSecurity.Security.controller;
 
-import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.SpringBootSecurity.Security.common.ApiResponse;
-import com.SpringBootSecurity.Security.common.ReviewInterface;
 import com.SpringBootSecurity.Security.dto.LoginDto;
 import com.SpringBootSecurity.Security.dto.SignUpDto;
-import com.SpringBootSecurity.Security.entity.Review;
 import com.SpringBootSecurity.Security.service.ServiceImplement;
 
 @Controller
@@ -53,10 +48,11 @@ public class LoginController {
 		return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
 	}
 
-	@GetMapping("/getmultiplevalues")
-	public List<ReviewInterface> getmultiplevalues(@RequestParam(value = "customerId") UUID cId) {
-		return implement.getmultiplevalues(cId);
-	}
+	
+	
+	
+	
+
 	
 	
 

@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.SpringBootSecurity.Security.entity.Customer;
+import com.SpringBootSecurity.Security.entity.Details;
 import com.SpringBootSecurity.Security.entity.User;
 import com.SpringBootSecurity.Security.entity.UserRole;
 import com.SpringBootSecurity.Security.repository.CustomerRepository;
+import com.SpringBootSecurity.Security.repository.DetailReposiory;
 import com.SpringBootSecurity.Security.repository.UserRepository;
 
 @Service
@@ -20,6 +22,9 @@ public class CustomerService {
 	
 	@Autowired
 	private UserRepository repository2;
+	
+	@Autowired
+	private DetailReposiory detailReposiory;
 	
 
 	public Customer postBoth(Customer customer) {
@@ -38,6 +43,11 @@ public class CustomerService {
 
 	public List<Customer> getboth() {
 	    return repository.findAll();
+	}
+
+
+	public Details detailpost(Details details) {
+		return detailReposiory.save(details);
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.SpringBootSecurity.Security.entity;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,21 +9,17 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="customer")
-public class Customer {
+@Table(name = "products")
+public class Products {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Cid;
+	private int productsId;
 	
-	private String name;
+	private String productName;
 	
-	private String gender;
+	private long productPrice;
 	
-	private String emailId;
 	
-	private String phoneNumber;
-	
-	private String password;
 	
 
 }

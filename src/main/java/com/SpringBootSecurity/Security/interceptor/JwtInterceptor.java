@@ -31,7 +31,8 @@ public class JwtInterceptor implements HandlerInterceptor {
 
 		String auth = request.getHeader("authorization");
 
-		if (!(request.getRequestURI().contains("logins") || request.getRequestURI().contains("signup") || request.getRequestURI().contains("/get/both/all"))) {
+		if (!(request.getRequestURI().contains("/post/both") ||request.getRequestURI().contains("/review/api") || request.getRequestURI().contains("/product/api")||request.getRequestURI().contains("logins") || 
+				request.getRequestURI().contains("/customer/api") || request.getRequestURI().contains("/get/both/all"))) {
 			Claims claims = jwToken.verify(auth);
 
 			requsetMeta.setUserName(claims.get("name").toString());

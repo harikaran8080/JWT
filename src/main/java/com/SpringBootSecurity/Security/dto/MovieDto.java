@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class MovieDto {
 	
-private int movieNo;
+    private int movieNo;
 	
 	
 	private String movieName;

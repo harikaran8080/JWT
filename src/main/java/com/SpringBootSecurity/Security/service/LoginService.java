@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,11 +12,12 @@ import org.springframework.stereotype.Service;
 import com.SpringBootSecurity.Security.common.ApiResponse;
 import com.SpringBootSecurity.Security.common.JwToken;
 import com.SpringBootSecurity.Security.common.PasswordUtil;
-import com.SpringBootSecurity.Security.common.ReviewInterface;
 import com.SpringBootSecurity.Security.dto.LoginDto;
+import com.SpringBootSecurity.Security.dto.ReviewInterfaceDto;
 import com.SpringBootSecurity.Security.dto.SignUpDto;
 import com.SpringBootSecurity.Security.entity.Review;
 import com.SpringBootSecurity.Security.entity.User;
+import com.SpringBootSecurity.Security.repository.ReviewRepository;
 import com.SpringBootSecurity.Security.repository.UserRepository;
 
 @Service
@@ -25,7 +25,7 @@ public class LoginService implements ServiceImplement {
 
 	@Autowired
 	private UserRepository repository;
-
+	
 	@Autowired
 	private JwToken jwToken;
 
@@ -108,11 +108,15 @@ public class LoginService implements ServiceImplement {
 		return apiResponse;
 	}
 
+
 	
-	@Override
-	public List<ReviewInterface> getmultiplevalues(UUID cId) {
-		return repository.findByMultipleValues(cId);
-	}
+
+	
+	
+
+
+
+	
 
 	
 
